@@ -16,6 +16,8 @@ public class ConfigureControl implements DAO  {
     @FXML
     private TextField add_uid;
     @FXML
+    private TextField del_uid;
+    @FXML
     private TextField add_loc;
     @FXML
     private TextField add_co2min;
@@ -36,7 +38,7 @@ public class ConfigureControl implements DAO  {
     @FXML
     protected void addDeviceHandle(ActionEvent event) {
 
-        String url = "http://192.168.43.213/SensorsIOT/writeSensor.php";
+        String url = "http://"+ HOST +"/SensorsIOT/writeSensor.php";
         String urlParameters = "uid="+add_uid.getText();
         urlParameters += "&loc="+add_loc.getText();
         urlParameters += "&cmin="+add_co2min.getText();
@@ -83,10 +85,66 @@ public class ConfigureControl implements DAO  {
 
             con.disconnect();
         }
+        //
+        add_uid.setText("");
+        add_loc.setText("");
+        add_co2min.setText("");
+        add_co2max.setText("");
+        add_tempmin.setText("");
+        add_tempmax.setText("");
+
     }
 
     @FXML
+    protected void delDeviceHandle(ActionEvent event) {
+
+              String url = "http://" + HOST + "/SensorsIOT/deleteSensor.php";
+              String urlParameters = "uid="+del_uid.getText();
+
+              byte[] postData = urlParameters.getBytes(StandardCharsets.UTF_8);
+
+              try {
+
+                  URL myurl = new URL(url);
+                  con = (HttpURLConnection) myurl.openConnection();
+
+                  con.setDoOutput(true);
+                  con.setRequestMethod("POST");
+                  con.setRequestProperty("User-Agent", "Java client");
+                  con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+
+                  try (DataOutputStream wr = new DataOutputStream(con.getOutputStream())) {
+
+                      wr.write(postData);
+                  }
+
+                  StringBuilder content;
+
+                  try (BufferedReader br = new BufferedReader(
+                          new InputStreamReader(con.getInputStream()))) {
+
+                      String line;
+                      content = new StringBuilder();
+
+                      while ((line = br.readLine()) != null) {
+                          content.append(line);
+                          content.append(System.lineSeparator());
+                      }
+                  }
+
+                  System.out.println(content.toString());
+
+              } catch (Exception e) {}
+               finally {
+                  con.disconnect();
+              }
+              //
+              del_uid.setText("");
+    }
+
+
+    @FXML
     protected void handleTrend(ActionEvent event) {
-      Graph.displayGraph();
+      Graph.displayGraph(add_uid.getText(), "2020-01-01", "2020-01-02");
     }
 }

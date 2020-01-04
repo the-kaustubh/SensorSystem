@@ -108,8 +108,25 @@
         </Label>
 
         <Label text="UID" GridPane.rowIndex="1" GridPane.columnIndex="0"  GridPane.halignment="CENTER"/>
-        <TextField GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-        <Button text="Search"  GridPane.columnSpan="1" prefWidth="500" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-        <Button text="Delete"  GridPane.columnSpan="1" prefWidth="500" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+        <TextField fx:id="del_uid" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <!-- <Button text="Search"  GridPane.columnSpan="1" prefWidth="500" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.columnIndex="0"/> -->
+        <Button text="Delete" onAction="#delDeviceHandle" GridPane.columnSpan="1" prefWidth="500" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
     </GridPane>
+    <!-- <GridPane fx:id="rmDevice" GridPane.columnIndex="1"
+                GridPane.columnSpan="4" GridPane.rowIndex="1"
+                GridPane.halignment="CENTER" hgap="4" vgap="4">
+    <padding><Insets top="40" right="20" bottom="40" left="20"/></padding>
+        <Label text="Generate Trend"
+            GridPane.rowIndex="0" GridPane.columnIndex="0"
+            GridPane.columnSpan="4" GridPane.halignment="CENTER">
+            <font>
+            <Font size="36"> </Font>
+            </font>
+        </Label>
+
+        <Label text="UID" GridPane.rowIndex="1" GridPane.columnIndex="0"  GridPane.halignment="CENTER"/>
+        <TextField fx:id="del_uid" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <Button text="Delete" onAction="#delDeviceHandle" GridPane.columnSpan="1" prefWidth="500" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+    </GridPane> -->
+
 </GridPane>

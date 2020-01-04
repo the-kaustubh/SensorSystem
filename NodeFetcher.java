@@ -1,4 +1,3 @@
-import java.sql.*;
 import java.util.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,23 +13,20 @@ public class NodeFetcher implements DAO {
 
     private static HttpURLConnection con;
 
-    private Sensor createSensor(ResultSet rs) {
-        Sensor s = new Sensor();
-        try {
-            // s.setCo2(rs2.getDouble("co2"));
-            // s.setHumidity(rs2.getDouble("humidity"));
-            // s.setTemperature(rs2.getDouble("temperature"));
-            s.setUID(rs.getString("uid"));
-            s.setLocation(rs.getString("loc"));
-            s.setSetCO2_min(rs.getDouble("co2min"));
-            s.setSetCO2_max(rs.getDouble("co2max"));
-            s.setSetTEMP_min(rs.getDouble("tempmin"));
-            s.setSetTEMP_max(rs.getDouble("tempmax"));
-            s.setMachineName(rs.getString("machinename"));
-            s.setStatus(rs.getBoolean("status"));
-        } catch (SQLException e ) {}
-        return s;
-    }
+    // private Sensor createSensor(ResultSet rs) {
+    //     Sensor s = new Sensor();
+    //     try {
+    //         s.setUID(rs.getString("uid"));
+    //         s.setLocation(rs.getString("loc"));
+    //         s.setSetCO2_min(rs.getDouble("co2min"));
+    //         s.setSetCO2_max(rs.getDouble("co2max"));
+    //         s.setSetTEMP_min(rs.getDouble("tempmin"));
+    //         s.setSetTEMP_max(rs.getDouble("tempmax"));
+    //         s.setMachineName(rs.getString("machinename"));
+    //         s.setStatus(rs.getBoolean("status"));
+    //     } catch (SQLException e ) {}
+    //     return s;
+    // }
 
     public ObservableList<Sensor> getSensors(String user) {
     // public void getSensors(String user) {
