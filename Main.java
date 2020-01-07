@@ -63,6 +63,7 @@ public class Main extends Application {
         report = new TableView<>();
         list = sensorMaster.getSensors(User.getUser());
         report.setItems(list);
+        // report.getProperty().bind(list);
         Timer timer = new Timer();
         Label UserName = new Label(User.getUser());
         Button Login    = new Button("Login");
@@ -70,7 +71,7 @@ public class Main extends Application {
         Button Register = new Button("Register");
         Button PrintReport = new Button("Print Report");
         HBox hb = new HBox(10, Login, UserName, Logout, Register, PrintReport);
-
+        // UserName.textProperty().bind(User.getUser());
         Register.setOnAction(e -> {
           try { RegisterPage.evoke(); }
           catch (Exception ex) { System.out.println(ex);}

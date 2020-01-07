@@ -27,9 +27,6 @@ class PrintNode {
 
     if (proceed)
     {
-      // jobStatus.textProperty().bind(job.jobStatusProperty().asString());
-
-      // Print the node
       boolean printed = job.printPage(node);
 
       if (printed)

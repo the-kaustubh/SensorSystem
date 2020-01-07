@@ -7,7 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
-
+import java.io.File;
 import java.net.URL;
 
 class RegisterPage {

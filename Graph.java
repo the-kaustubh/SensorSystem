@@ -11,7 +11,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import javafx.scene.control.Button;
 import java.nio.charset.StandardCharsets;
+import javafx.scene.layout.VBox;
 import javafx.stage.*;
 
 public class Graph implements DAO{
@@ -37,6 +39,8 @@ public class Graph implements DAO{
 
 
     lineChart.setTitle("Daily Trend");
+    Button PrintTrend = new Button("Print Trend");
+    VBox vb = new VBox(10, lineChart, PrintTrend);
 
     XYChart.Series tempSeries = new XYChart.Series();
     tempSeries.setName("Temperature");
@@ -44,7 +48,6 @@ public class Graph implements DAO{
     humiSeries.setName("Humidity");
     XYChart.Series co2Series = new XYChart.Series();
     co2Series.setName("CO2");
-    // Reading readings[] = null;
 
     try {
 
@@ -93,8 +96,15 @@ public class Graph implements DAO{
         con.disconnect();
     }
 
+    PrintTrend.setOnAction(e -> {
+      try {
+        PrintNode.sendPrint(window, lineChart);
+      } catch (Exception ex) {
+        System.out.println(ex);
+      }
+    });
 
-    Scene scene  = new Scene(lineChart,800,600);
+    Scene scene  = new Scene(vb,800,600);
 
     window.setScene(scene);
     window.showAndWait();
