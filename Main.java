@@ -115,7 +115,7 @@ public class Main extends Application {
         try {
             root = FXMLLoader.load(getClass().getResource("configure.fxml"));
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println("It's me" + e);
         }
         PrintReport.setOnAction(e -> {
           System.out.println("Printing");

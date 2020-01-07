@@ -10,8 +10,8 @@ public class Sensor {
 
     public Sensor() {
         Sensor sensor = this;
-        sensor.UID = "";
-        sensor.Location = "";
+        sensor.UID = " ";
+        sensor.Location = " ";
         sensor.setCO2_min = 12;
         sensor.setCO2_max = 100;
         sensor.setTEMP_min = 10;

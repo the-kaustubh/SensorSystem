@@ -73,19 +73,9 @@ public class ConfigureControl implements DAO  {
             try (BufferedReader br = new BufferedReader(
                     new InputStreamReader(con.getInputStream()))) {
 
-                // String line;
-                // content = new StringBuilder();
-                //
-                // while ((line = br.readLine()) != null) {
-                //     content.append(line);
-                //     content.append(System.lineSeparator());
-                // }
             }
-
-            // System.out.println(content.toString());
-
         } catch (Exception e) {
-
+          System.out.println(e);
         } finally {
 
             con.disconnect();
