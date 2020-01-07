@@ -15,7 +15,8 @@ class LoginPage {
   public static int evoke() throws Exception {
     Stage window = new Stage();
     FXMLLoader fl = new FXMLLoader();
-    fl.setLocation(new URL("file:///home/kaustubh/Documents/Java/SensorSystem/login.fxml"));
+    // fl.setLocation(new URL("file:///home/kaustubh/Documents/Java/SensorSystem/login.fxml"));
+    fl.setLocation(new URL("file://C:/login.fxml"));
     GridPane gp = fl.<GridPane>load();
 
     // window.setScene(gp, 800, 600);
