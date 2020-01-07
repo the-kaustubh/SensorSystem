@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -29,9 +30,6 @@ public class Main extends Application {
     private char[] propertyType = {'s', 's',
     's', 'd', 'd', 'd',
     'd', 'd', 'd', 'd', 's'};
-
-    public String user = "kaustubh";
-
 
     public TableView<Sensor> report;
     public ObservableList<Sensor> list;
@@ -63,25 +61,51 @@ public class Main extends Application {
         gc.strokeText( "Name ", 500, 50);
 
         report = new TableView<>();
-        list = sensorMaster.getSensors(user);
+        list = sensorMaster.getSensors(User.getUser());
         report.setItems(list);
         Timer timer = new Timer();
-         timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-              list = sensorMaster.getRTReadings(user, sensorMaster.getSensors(user));
-              report.setItems(list);
-            }
-         }, 0, 1000 * 60 * 1);  // Every 5 minutes
-        VBox vb = new VBox(10, canvas, report);
+        Label UserName = new Label(User.getUser());
+        Button Login    = new Button("Login");
+        Button Logout   = new Button("Logout");
+        Button Register = new Button("Register");
+        HBox hb = new HBox(10, UserName, Login, Logout, Register);
 
-        // // works
-        // for (TableColumn<Sensor, ?> tableColumn : tc_list) {
-        //     report.getColumns().add(tableColumn);
-        // }
+        Register.setOnAction(e -> {
+          try { RegisterPage.evoke(); }
+          catch (Exception ex) { System.out.println(ex);}
+        });
 
+        Login.setOnAction(e -> {
+          try {
+            LoginPage.evoke();
+            String user = User.getUser();
+            UserName.setText(user);
+            list = sensorMaster.getRTReadings(user,
+                   sensorMaster.getSensors(user));
+            report.setItems(list);
+          }
+          catch (Exception ex) { System.out.println(ex);}
+        });
 
-        // // works
+        Logout.setOnAction(e -> {
+          User.setUser("None");
+          UserName.setText(User.getUser());
+          report.setItems(sensorMaster.getRTReadings(User.getUser(),
+                          sensorMaster.getSensors(User.getUser())));
+        });
+
+        timer.schedule(new TimerTask() {
+          @Override
+          public void run() {
+            String user = User.getUser();
+            UserName.setText(user);
+            list = sensorMaster.getRTReadings(user,
+                   sensorMaster.getSensors(user));
+            report.setItems(list);
+          }
+        }, 0, 1000 * 60);  // Every 5 minutes
+        VBox vb = new VBox(10, canvas, report, hb);
+
         tc_list.forEach((tc) -> {
             report.getColumns().add(tc);
         });
@@ -122,11 +146,4 @@ public class Main extends Application {
         col.setCellValueFactory(new PropertyValueFactory<>(id));
         return col;
     }
-
-    // static ObservableList<Sensor> getSensor() {
-    //     ObservableList<Sensor> sensors = FXCollections.observableArrayList();
-    //     sensors.add(new Sensor("100000", "LOC1"));
-    //     return sensors;
-
-    // }
 }

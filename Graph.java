@@ -18,7 +18,7 @@ public class Graph implements DAO{
 
   private static HttpURLConnection con;
 
-  public static void displayGraph(String uid, String from, String to) {
+  public static void displayGraph(String uid) {
     Stage window = new Stage();
     window.initModality(Modality.APPLICATION_MODAL);
     window.setTitle("Trend for "+uid);
@@ -26,8 +26,7 @@ public class Graph implements DAO{
     window.setMinHeight(300);
 
     String url = "http://"+ HOST +"/SensorsIOT/getTrend.php";
-    String urlParameters = "uid="+uid;
-    urlParameters += "&from="+from+"&to="+to;
+    String urlParameters = "uid="+uid+"&user="+User.getUser();
     byte[] postData = urlParameters.getBytes(StandardCharsets.UTF_8);
 
     final CategoryAxis xAxis = new CategoryAxis();
@@ -102,58 +101,4 @@ public class Graph implements DAO{
 
 
   }
-  //
-  //
-  // public static Reading[] getTrend(String uid, String from, String to) {
-  // // public void getSensors(String user) {
-  //
-  //   Reading readings[] = null;
-  //
-  //   try {
-  //
-  //       URL myurl = new URL(url);
-  //       con = (HttpURLConnection) myurl.openConnection();
-  //
-  //       con.setDoOutput(true);
-  //       con.setRequestMethod("POST");
-  //       con.setRequestProperty("User-Agent", "Java client");
-  //       con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-  //
-  //       try (DataOutputStream wr = new DataOutputStream(con.getOutputStream())) {
-  //           wr.write(postData);
-  //       }
-  //
-  //       StringBuilder content;
-  //
-  //       try (BufferedReader br = new BufferedReader(
-  //               new InputStreamReader(con.getInputStream()))) {
-  //
-  //           String line;
-  //           // content = new StringBuilder();
-  //           int times = Integer.parseInt(br.readLine());
-  //           // System.out.println(times);
-  //           readings = new Reading[times];
-  //           int ul = times*4;
-  //           for(int i = 0;i < ul; i++ ) {
-  //             readings[i].timestamp   = br.readLine();
-  //             System.out.println(readings[i].timestamp);
-  //             readings[i].temperature = Double.parseDouble(br.readLine());
-  //             readings[i].humidity    = Double.parseDouble(br.readLine());
-  //             readings[i].temperature = Double.parseDouble(br.readLine());
-  //             // System.out.println(br.readLine());
-  //           }
-  //           for(int i = 0; i < readings.length; i++) {
-  //             System.out.println(readings[i].timestamp);
-  //             System.out.println(readings[i].temperature);
-  //             System.out.println(readings[i].humidity);
-  //             System.out.println(readings[i].co2);
-  //           }
-  //
-  //       }
-  //   } catch (Exception e) {
-  //   } finally {
-  //       con.disconnect();
-  //   }
-  //   return readings;
-  // }
 }

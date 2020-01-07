@@ -32,7 +32,7 @@ public class NodeFetcher implements DAO {
     // public void getSensors(String user) {
 
       String url = "http://192.168.43.213/SensorsIOT/getSensor.php";
-      String urlParameters = "user="+GUI_USER;
+      String urlParameters = "user="+User.getUser();
       byte[] postData = urlParameters.getBytes(StandardCharsets.UTF_8);
       ObservableList<Sensor> list = FXCollections.observableArrayList();
 
