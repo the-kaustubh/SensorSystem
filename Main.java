@@ -68,7 +68,8 @@ public class Main extends Application {
         Button Login    = new Button("Login");
         Button Logout   = new Button("Logout");
         Button Register = new Button("Register");
-        HBox hb = new HBox(10, UserName, Login, Logout, Register);
+        Button PrintReport = new Button("Print Report");
+        HBox hb = new HBox(10, Login, UserName, Logout, Register, PrintReport);
 
         Register.setOnAction(e -> {
           try { RegisterPage.evoke(); }
@@ -115,6 +116,14 @@ public class Main extends Application {
         } catch (Exception e) {
             System.out.println(e);
         }
+        PrintReport.setOnAction(e -> {
+          System.out.println("Printing");
+          try {
+            PrintNode.sendPrint(window, report);
+          } catch (Exception ex) {
+            System.out.println(ex);
+          }
+        });
 
         Tab configureView = new Tab("Configure", root);
         Tab reportView  = new Tab("Report View", vb);
