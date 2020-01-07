@@ -7,7 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
-
+import java.io.File;
 import java.net.URL;
 
 class LoginPage {
@@ -15,11 +15,7 @@ class LoginPage {
   public static int evoke() throws Exception {
     Stage window = new Stage();
     FXMLLoader fl = new FXMLLoader();
-    if(System.getProperty("os.name").equals("Linux")) {
-      fl.setLocation(new URL("file:///home/kaustubh/Documents/Java/SensorSystem/login.fxml"));
-    } else {
-      fl.setLocation(new URL("file:///C:/login.fxml"));
-    }
+    fl.setLocation(new File("login.fxml").toURI().toURL());
     GridPane gp = fl.<GridPane>load();
 
     // window.setScene(gp, 800, 600);
