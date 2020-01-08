@@ -61,6 +61,18 @@ public class Main extends Application {
         logo.setX(15);
         logo.setY(15);
 
+        //
+
+        // Rectangle rect = new Rectangle(0,0,dataDisplayAreaAnchorPane.getWidth(),dataDisplayAreaAnchorPane.getHeight());
+        // dataDisplayAreaAnchorPane.setClip(rect);
+        // WritableImage writableImage;
+        // writableImage = new WritableImage((int) dataDisplayAreaAnchorPane.getPrefWidth(),
+        //         (int) dataDisplayAreaAnchorPane.getPrefHeight());
+        // dataDisplayAreaAnchorPane.snapshot(null, writableImage);
+        // eventDispatcher.printLandscape(writableImage);
+        //
+
+
         HBox hb1 = new HBox(5);
 
         gc.setFill( Color.ORANGE );

@@ -20,6 +20,10 @@ class PrintNode {
     Printer printer = Printer.getDefaultPrinter();
     printer.createPageLayout(Paper.A4, PageOrientation.LANDSCAPE, Printer.MarginType.EQUAL);
     PrinterJob job = PrinterJob.createPrinterJob();
+    node.setScaleX(0.6);
+    node.setScaleY(0.6);
+    node.setTranslateX(-220);
+    node.setTranslateY(-70);
 
     if (job == null)
     {
@@ -38,5 +42,9 @@ class PrintNode {
           job.endJob();
       }
     }
+    node.setScaleX(1);
+    node.setScaleY(1);
+    node.setTranslateX(0);
+    node.setTranslateY(0);
   }
 }
