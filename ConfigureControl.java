@@ -82,6 +82,7 @@ public class ConfigureControl implements DAO  {
         }
         //
         add_uid.setText("");
+        add_model.setText("");
         add_loc.setText("");
         add_co2min.setText("");
         add_co2max.setText("");

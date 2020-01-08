@@ -3,11 +3,13 @@ import java.util.Timer;
 import java.util.TimerTask;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.image.ImageView;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -16,6 +18,7 @@ import javafx.scene.text.*;
 import javafx.stage.Stage;
 import javafx.geometry.*;
 import javafx.collections.ObservableList;
+import javafx.beans.binding.*;
 
 public class Main extends Application {
     Stage window;
@@ -52,13 +55,32 @@ public class Main extends Application {
         Canvas canvas = new Canvas( 1000, 70 );
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
+        ImageView logo = new ImageView("AtechnoLogo.jpg");
+        logo.setFitHeight(50);
+        logo.setFitWidth(50);
+        logo.setX(15);
+        logo.setY(15);
+
+        HBox hb1 = new HBox(5);
+
         gc.setFill( Color.ORANGE );
         gc.setStroke( Color.BLUE );
         gc.setLineWidth(1);
-        Font theFont = Font.font("Trebuchet MS", FontWeight.BOLD, 52 );
+
+        Font theFont = Font.font("Trebuchet MS", FontWeight.BOLD, 12 );
         gc.setFont( theFont );
-        gc.fillText( "Name ", 500, 50);
-        gc.strokeText( "Name ", 500, 50);
+        gc.fillText("ATECHNO", 30, 15);
+        gc.fillText("EMBEDDED", 30, 25);
+        gc.fillText("SOLUTIONS", 30, 35);
+        gc.fillText("(OPC) PVT LTD", 30, 45);
+
+        Font theFont1 = Font.font("Trebuchet MS", FontWeight.BOLD, 24 );
+        gc.setFont( theFont1 );
+        gc.fillText("NIV MCC Central Monitoring System", 150, 20);
+
+        Font theFont2 = Font.font("Trebuchet MS", FontWeight.NORMAL, 20 );
+        gc.setFont( theFont2 );
+        gc.fillText("National Institute of Virology Microbial Containment Complex", 150, 45);
 
         report = new TableView<>();
         list = sensorMaster.getSensors(User.getUser());
@@ -66,6 +88,7 @@ public class Main extends Application {
         // report.getProperty().bind(list);
         Timer timer = new Timer();
         Label UserName = new Label(User.getUser());
+        // UserName.textProperty().bind(Bindings.convert(User.getUser()));
         Button Login    = new Button("Login");
         Button Logout   = new Button("Logout");
         Button Register = new Button("Register");
@@ -99,14 +122,15 @@ public class Main extends Application {
         timer.schedule(new TimerTask() {
           @Override
           public void run() {
+            // UserName.setText(User.getUser());
             String user = User.getUser();
-            UserName.setText(user);
             list = sensorMaster.getRTReadings(user,
                    sensorMaster.getSensors(user));
             report.setItems(list);
           }
-        }, 0, 1000 * 60);  // Every 5 minutes
-        VBox vb = new VBox(10, canvas, report, hb);
+        }, 0, 1000 );  // Every 5 minutes
+        hb1.getChildren().addAll(logo, canvas);
+        VBox vb = new VBox(10, hb1, report, hb);
 
         tc_list.forEach((tc) -> {
             report.getColumns().add(tc);
