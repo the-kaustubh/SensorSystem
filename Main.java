@@ -3,7 +3,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.image.ImageView;
+// import javafx.scene.image.ImageView;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -55,11 +55,11 @@ public class Main extends Application {
         Canvas canvas = new Canvas( 1000, 70 );
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
-        ImageView logo = new ImageView("AtechnoLogo.jpg");
-        logo.setFitHeight(50);
-        logo.setFitWidth(50);
-        logo.setX(15);
-        logo.setY(15);
+        // ImageView logo = new ImageView("./AtechnoLogo.jpg");
+        // logo.setFitHeight(50);
+        // logo.setFitWidth(50);
+        // logo.setX(15);
+        // logo.setY(15);
 
         //
 
@@ -141,7 +141,8 @@ public class Main extends Application {
             report.setItems(list);
           }
         }, 0, 1000 );  // Every 5 minutes
-        hb1.getChildren().addAll(logo, canvas);
+        // hb1.getChildren().addAll(logo, canvas);
+        hb1.getChildren().addAll( canvas);
         VBox vb = new VBox(10, hb1, report, hb);
 
         tc_list.forEach((tc) -> {
@@ -173,7 +174,7 @@ public class Main extends Application {
 
         Scene scene = new Scene( tp);
         window.setScene(scene);
-        window.setTitle("Window1r");
+        window.setTitle("Central Monitoring System");
         window.setMaximized(true);
         window.show();
     }
